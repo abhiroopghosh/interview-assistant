@@ -1,0 +1,27 @@
+{
+    "role": "Java Developer",
+    "requiredSkills": [
+      "Java 16",
+      "Spring Boot",
+      "Hibernate",
+      "REST API",
+      "Design patterns",
+      "Dependency Injection",
+      "SQL"
+    ],
+    "minYears": 3,
+    "responsibilities": [
+      "Design, develop, and maintain Java applications",
+      "Implement RESTful APIs and integrate with front-end systems",
+      "Collaborate with cross-functional teams to define and deliver software solutions",
+      "Optimize application performance and scalability",
+      "Write clean, maintainable, and well-documented code"
+    ],
+    "preferredQualifications": [
+      "Experience with microservices architecture",
+      "Knowledge of cloud platforms (AWS, Azure, or GCP)",
+      "Familiarity with CI/CD pipelines",
+      "Strong problem-solving and debugging skills"
+    ]
+  }
+  

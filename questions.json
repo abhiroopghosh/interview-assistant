@@ -1,0 +1,66 @@
+{
+    "Java Developer": [
+      {
+        "level": "Beginner",
+        "question": "What is the difference between == and .equals() in Java?",
+        "answer": "== compares references, .equals() compares content"
+      },
+      {
+        "level": "Intermediate",
+        "question": "Explain how HashMap handles collisions internally.",
+        "answer": "By using linked lists or balanced trees"
+      },
+      {
+        "level": "Advanced",
+        "question": "Design a thread-safe Singleton in Java.",
+        "answer": "Use double-checked locking with volatile instance"
+      }
+    ],
+    "Data Engineer": [
+      {
+        "level": "Beginner",
+        "question": "What is the difference between SQL and NoSQL databases?",
+        "answer": "SQL uses structured tables, NoSQL is schema-less"
+      },
+      {
+        "level": "Intermediate",
+        "question": "Explain how Hadoop handles large datasets.",
+        "answer": "Distributed storage and parallel processing"
+      },
+      {
+        "level": "Advanced",
+        "question": "How would you design a data pipeline for real-time analytics?",
+        "answer": "Use streaming tools like Kafka + Spark"
+      }
+    ],
+    "Frontend Developer": [
+      {
+        "level": "Beginner",
+        "question": "What is the difference between inline, internal, and external CSS?",
+        "answer": "Inline applies to one element, internal applies to one page, external applies globally"
+      },
+      {
+        "level": "Intermediate",
+        "question": "Explain how React manages state.",
+        "answer": "Through useState, useReducer, and context"
+      },
+      {
+        "level": "Advanced",
+        "question": "How would you optimize a large React application?",
+        "answer": "Code splitting, memoization, virtualization"
+      }
+    ],
+    "Behavioral": [
+      {
+        "level": "Behavioral",
+        "question": "Tell me about a time you faced a conflict in a team. How did you resolve it?",
+        "answer": "Look for collaboration, communication, conflict resolution"
+      },
+      {
+        "level": "Behavioral",
+        "question": "Describe a situation where you had to learn a new technology quickly. How did you approach it?",
+        "answer": "Look for adaptability, curiosity, initiative"
+      }
+    ]
+  }
+  
