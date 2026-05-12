@@ -2,7 +2,9 @@ import streamlit as st
 import json
 import re
 from difflib import SequenceMatcher
-from fpdf import FPDF  # lightweight PDF library
+from fpdf import FPDF
+import PyPDF2
+import docx  # for Word document parsing
 
 # -------------------------------
 # Load Questions
@@ -12,6 +14,22 @@ def load_questions(file_path="questions.json"):
         return json.load(f)
 
 questions = load_questions()
+
+# -------------------------------
+# Resume Readers
+# -------------------------------
+def read_pdf(file):
+    pdf_reader = PyPDF2.PdfReader(file)
+    text = ""
+    for page in pdf_reader.pages:
+        if page.extract_text():
+            text += page.extract_text() + "\n"
+    return text
+
+def read_docx(file):
+    doc = docx.Document(file)
+    text = "\n".join([para.text for para in doc.paragraphs])
+    return text
 
 # -------------------------------
 # Screening
@@ -85,31 +103,19 @@ def generate_summary(score, strengths, weaknesses, recommendation):
     return summary
 
 # -------------------------------
-# PDF Export
-# -------------------------------
-def export_pdf(screening, evaluation):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
-
-    pdf.cell(200, 10, "Interview Assistant Report", ln=True, align="C")
-    pdf.ln(10)
-
-    pdf.multi_cell(0, 10, f"Screening Result:\n{screening}")
-    pdf.ln(5)
-    pdf.multi_cell(0, 10, f"Evaluation:\n{evaluation['narrative']}")
-
-    return pdf.output(dest="S").encode("latin-1")
-
-# -------------------------------
 # Streamlit UI
 # -------------------------------
 st.title("Interview Assistant")
 
-resume_file = st.file_uploader("Upload Candidate Resume (.txt)", type=["txt"])
+resume_file = st.file_uploader("Upload Candidate Resume (.txt, .pdf, .docx)", type=["txt", "pdf", "docx"])
 resume_text = ""
 if resume_file is not None:
-    resume_text = resume_file.read().decode("utf-8")
+    if resume_file.type == "application/pdf":
+        resume_text = read_pdf(resume_file)
+    elif resume_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        resume_text = read_docx(resume_file)
+    else:
+        resume_text = resume_file.read().decode("utf-8")
 
 job_file = st.file_uploader("Upload Job Description (.json)", type=["json"])
 job_description = {}
@@ -138,12 +144,3 @@ if resume_text and job_description:
         evaluation = evaluate_responses(candidate_responses)
         st.subheader("Evaluation Report")
         st.write(evaluation["narrative"])
-
-        # PDF download button
-        pdf_bytes = export_pdf(screening, evaluation)
-        st.download_button(
-            label="📄 Download Report as PDF",
-            data=pdf_bytes,
-            file_name="candidate_report.pdf",
-            mime="application/pdf"
-        )
