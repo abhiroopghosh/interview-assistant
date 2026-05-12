@@ -14,7 +14,131 @@
         "level": "Advanced",
         "question": "Design a thread-safe Singleton in Java.",
         "answer": "Use double-checked locking with volatile instance"
+      },
+
+      {
+        "level": "Intermediate",
+        "question": "Explain Dependency Injection with an example of how it improves testability in a Java application.",
+        "answer": "By injecting dependencies externally (e.g., via constructors in Spring), classes avoid hard‑coded instantiations, making them easier to mock and test."
+      },
+      {
+        "level": "Intermediate",
+        "question": "How does Spring Boot simplify dependency management compared to traditional Java applications?",
+        "answer": "Spring Boot provides starter dependencies, auto‑configuration, and embedded servers, reducing boilerplate setup."
+      },
+      {
+        "level": "Intermediate",
+        "question": "Which SOLID principle would you apply if a class is handling both database operations and business logic?",
+        "answer": "Single Responsibility Principle — split the class into separate layers for persistence and business logic."
+      },
+      {
+        "level": "Intermediate",
+        "question": "Give a scenario where you would use the Factory design pattern in Java.",
+        "answer": "When creating objects without exposing instantiation logic, e.g., generating different types of payment processors based on input."
+      },
+      {
+        "level": "Intermediate",
+        "question": "How would you implement the Observer pattern in a Java application that needs to notify multiple modules when a user updates their profile?",
+        "answer": "Create a Subject class with attach/detach methods, and notify observers whenever the profile changes."
+      },
+      {
+        "level": "Intermediate",
+        "question": "What strategies can you use to prevent memory leaks in Java applications?",
+        "answer": "Avoid static references to large objects, close resources properly, and use weak references where appropriate."
+      },
+      {
+        "level": "Intermediate",
+        "question": "Explain how the Garbage Collector works in Java and how you would tune it for a high‑performance application.",
+        "answer": "GC reclaims memory from unreachable objects. Tuning involves selecting algorithms (e.g., G1 GC) and adjusting heap size and GC parameters."
+      },
+      {
+        "level": "Intermediate",
+        "question": "How would you design a multithreaded Java application to process large datasets efficiently?",
+        "answer": "Use ExecutorService with a fixed thread pool, divide tasks into chunks, and ensure thread safety with concurrent collections."
+      },
+      {
+        "level": "Intermediate",
+        "question": "What issues can arise with multithreading in Java, and how would you mitigate them?",
+        "answer": "Race conditions, deadlocks, and thread starvation. Mitigate with synchronization, locks, and careful resource management."
+      },
+      {
+        "level": "Intermediate",
+        "question": "Describe a scenario where you would use the Strategy design pattern in Java.",
+        "answer": "When implementing interchangeable algorithms, e.g., different sorting strategies or payment methods."
+      },
+      {
+        "level": "Intermediate",
+        "question": "How would you apply the Open/Closed principle in designing a reporting module?",
+        "answer": "Design the module to be open for extension (new report formats) but closed for modification by using interfaces and abstract classes."
+      },
+      {
+        "level": "Intermediate",
+        "question": "In a Spring application, how would you manage bean scopes for services that need to be reused versus those that should be created per request?",
+        "answer": "Use @Singleton scope for reusable services and @RequestScope or @Prototype for per‑request or per‑instance beans."
+      },
+          {
+            "level": "Advanced",
+            "question": "You are building a large enterprise application. How would you use Dependency Injection to manage service classes and ensure testability?",
+            "answer": "By injecting dependencies via constructors or setters using Spring IoC, avoiding hard‑coded instantiations, and enabling mocking in unit tests."
+          },
+          {
+            "level": "Advanced",
+            "question": "In a Spring Boot microservice, how would you configure and use profiles to separate dev, test, and production environments?",
+            "answer": "Define environment‑specific properties in application‑dev.yml, application‑prod.yml, and activate profiles with @Profile or spring.profiles.active."
+          },
+          {
+            "level": "Advanced",
+            "question": "A class in your system is doing too many things. Which SOLID principle is violated and how would you fix it?",
+            "answer": "Single Responsibility Principle is violated. Split the class into smaller classes, each handling one responsibility."
+          },
+          {
+            "level": "Advanced",
+            "question": "You need to notify multiple modules when a user updates their profile. Which design pattern would you use?",
+            "answer": "Observer pattern — the profile acts as the subject, and modules subscribe as observers to receive updates."
+          },
+          {
+            "level": "Advanced",
+            "question": "Your application is experiencing memory leaks. How would you analyze and optimize garbage collection?",
+            "answer": "Use tools like VisualVM or JConsole to monitor heap usage, analyze GC logs, and tune GC algorithms (e.g., G1 GC)."
+          },
+          {
+            "level": "Advanced",
+            "question": "You need to process millions of records concurrently. How would you design a multithreaded solution in Java?",
+            "answer": "Use ExecutorService with a thread pool, divide tasks into batches, and ensure thread safety with synchronization or concurrent collections."
+          },
+          {
+            "level": "Advanced",
+            "question": "How would you implement a Singleton that is thread‑safe and lazy‑loaded?",
+            "answer": "Use double‑checked locking with a volatile instance variable, or use the Bill Pugh inner static helper class approach."
+          },
+          {
+            "level": "Advanced",
+            "question": "You are asked to design a payment processing system. Which design patterns would you apply?",
+            "answer": "Strategy pattern for payment methods, Factory pattern for creating processors, and Observer for notifying transaction status."
+          },
+          {
+            "level": "Advanced",
+            "question": "In a high‑traffic web app, how would you handle concurrent updates to shared resources?",
+            "answer": "Use synchronization, locks, or atomic classes. For distributed systems, use optimistic locking or database transactions."
+          },
+          {
+            "level": "Advanced",
+            "question": "Explain a scenario where you would use the Builder pattern in Java.",
+            "answer": "When constructing complex objects like immutable DTOs with many optional parameters, Builder provides clarity and flexibility."
+          },
+          {
+            "level": "Advanced",
+            "question": "How would you design a logging system that can be extended to multiple output formats (console, file, cloud)?",
+            "answer": "Use the Strategy pattern for different logging outputs and Dependency Injection to configure the desired implementation."
+          },
+          {
+            "level": "Advanced",
+            "question": "You need to ensure scalability in a Spring Boot microservice. What practices would you follow?",
+            "answer": "Use stateless services, externalize configuration, enable caching, and design with horizontal scaling in mind."
+          }
+        ]
       }
+      
     ],
     "Data Engineer": [
       {
