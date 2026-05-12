@@ -41,7 +41,7 @@ def screen_profile(candidate_resume, job_description):
     score = 0
     matched_skills = []
 
-    for skill in job_description["requiredSkills"]:
+    for skill in job_description.get("requiredSkills", []):
         if skill.lower() in skills:
             score += 10
             matched_skills.append(skill)
@@ -59,6 +59,7 @@ def screen_profile(candidate_resume, job_description):
     return {
         "skillsMatched": matched_skills,
         "score": score,
+        "years": years,
         "summary": f"Matched skills: {matched_skills}, Years of experience: {years}"
     }
 
@@ -103,6 +104,28 @@ def generate_summary(score, strengths, weaknesses, recommendation):
     return summary
 
 # -------------------------------
+# Question Filtering
+# -------------------------------
+def get_questions_for_experience(role, years, questions, manual_level=None):
+    role_questions = questions.get(role, [])
+    behavioral_questions = questions.get("Behavioral", [])
+
+    # Manual override if recruiter selects level
+    if manual_level:
+        level = manual_level
+    else:
+        # Automatic detection based on years
+        if years <= 2:
+            level = "Beginner"
+        elif 3 <= years <= 5:
+            level = "Intermediate"
+        else:
+            level = "Advanced"
+
+    filtered_questions = [q for q in role_questions if q["level"] == level]
+    return filtered_questions + behavioral_questions
+
+# -------------------------------
 # Streamlit UI
 # -------------------------------
 st.title("Interview Assistant")
@@ -122,23 +145,35 @@ job_description = {}
 if job_file is not None:
     job_description = json.load(job_file)
 
+# Manual override for experience level
+experience_level = st.selectbox(
+    "Select Candidate Experience Level (manual override)",
+    ["Auto Detect", "Beginner", "Intermediate", "Advanced"]
+)
+
 if resume_text and job_description:
     st.subheader("Screening Result")
     screening = screen_profile(resume_text, job_description)
     st.write(screening)
 
+    years = screening["years"]
+
     st.subheader("Interview Questions")
     role = job_description.get("role", "")
-    role_questions = questions.get(role, [])
-    behavioral_questions = questions.get("Behavioral", [])
-    all_questions = role_questions + behavioral_questions
+    manual_level = None if experience_level == "Auto Detect" else experience_level
+    all_questions = get_questions_for_experience(role, years, questions, manual_level)
 
     candidate_responses = []
     for q in all_questions:
         answer = st.text_input(f"{q['level']} - {q['question']}")
         if answer:
             correct = similarity(answer, q["answer"]) > 0.5 if q["level"] != "Behavioral" else True
-            candidate_responses.append({"question": q["question"], "response": answer, "correct": correct, "topic": q["level"]})
+            candidate_responses.append({
+                "question": q["question"],
+                "response": answer,
+                "correct": correct,
+                "topic": q["level"]
+            })
 
     if st.button("Evaluate Responses"):
         evaluation = evaluate_responses(candidate_responses)
