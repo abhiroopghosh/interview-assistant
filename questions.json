@@ -136,27 +136,7 @@
             "question": "You need to ensure scalability in a Spring Boot microservice. What practices would you follow?",
             "answer": "Use stateless services, externalize configuration, enable caching, and design with horizontal scaling in mind."
           }
-        ]
-      }
-      
-    ],
-    "Data Engineer": [
-      {
-        "level": "Beginner",
-        "question": "What is the difference between SQL and NoSQL databases?",
-        "answer": "SQL uses structured tables, NoSQL is schema-less"
-      },
-      {
-        "level": "Intermediate",
-        "question": "Explain how Hadoop handles large datasets.",
-        "answer": "Distributed storage and parallel processing"
-      },
-      {
-        "level": "Advanced",
-        "question": "How would you design a data pipeline for real-time analytics?",
-        "answer": "Use streaming tools like Kafka + Spark"
-      }
-    ],
+        ],
     "Frontend Developer": [
       {
         "level": "Beginner",
