@@ -128,7 +128,7 @@ def get_questions_for_experience(role, years, questions, manual_level=None):
 # -------------------------------
 # Streamlit UI
 # -------------------------------
-st.title("Interview Assistant")
+st.title("Interview Assistant Developed Using GitHub CoPilot")
 
 resume_file = st.file_uploader("Upload Candidate Resume (.txt, .pdf, .docx)", type=["txt", "pdf", "docx"])
 resume_text = ""
